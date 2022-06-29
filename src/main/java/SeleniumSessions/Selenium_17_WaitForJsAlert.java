@@ -1,0 +1,61 @@
+package SeleniumSessions;
+
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Selenium_17_WaitForJsAlert {
+
+	static WebDriver driver;
+	
+	public static void main(String[] args) {
+
+		WebDriverManager.chromedriver().setup();
+		
+		driver = new ChromeDriver();
+		driver.get("https://mail.rediff.com/cgi-bin/login.cgi");
+		
+		driver.findElement(By.name("proceed")).click();
+		
+//		Alert alert = driver.switchTo().alert();//NoAlertPresentException : no such alert
+	
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+//		String text = alert.getText();
+//		System.out.println(text);
+//		alert.accept();
+		
+		String text = getAlertText(10);
+		System.out.println(text);
+	}
+
+	public static Alert waitForAlert(int timeOut)
+	{
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		return wait.until(ExpectedConditions.alertIsPresent());
+	}
+	public static String getAlertText(int timeOut)
+	{
+		return waitForAlert(timeOut).getText();
+	}
+	public static void doAlertAccept(int timeOut)
+	{
+		waitForAlert(timeOut).accept();
+	}
+	public static void doAlertDismiss(int timeOut)
+	{
+		waitForAlert(timeOut).dismiss();
+	}
+	public static void enterAlertText(String value,int timeOut)
+	{
+		waitForAlert(timeOut).sendKeys(value);
+	}
+}

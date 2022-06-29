@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="NaveenAutomation Lab TestNG Sessions Suite" >
+  <test  name="My TestNG practice test" verbose="2">
+  
+    <classes>
+      <class name="MyTests.TestNG_01_SelfWork_OpenCartTest" />
+      <class name="MyTests.TestNG_01_LoginPageTest" />
+    </classes>
+    
+  </test> 
+</suite> 
